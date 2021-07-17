@@ -1,10 +1,16 @@
 from fastapi import FastAPI
 from typing import List  # ネストされたBodyを定義するために必要
 from starlette.middleware.cors import CORSMiddleware  # CORSを回避するために必要
+from fastapi.templating import Jinja2Templates
+from starlette.requests import Request
 from db import session  # DBと接続するためのセッション
 from model import UserTable, User  # 今回使うモデルをインポート
 
-app = FastAPI()
+app = FastAPI(
+    title='FastAPIvvvでつくるtoDoアプリ',
+    description='FastAPIチュートリアル：FastAPI(とstarlette)でシンプルなtoDoアプリを作りましょう．',
+    version='0.9 beta'
+)
 
 # CORSを回避するために設定
 app.add_middleware(
@@ -16,6 +22,19 @@ app.add_middleware(
 )
 
 # ----------APIの実装------------
+templates = Jinja2Templates(directory="templates")
+jinja_env = templates.env
+
+@app.get("/")
+async def index(request: Request):
+    return templates.TemplateResponse('index.html', {'request': request})
+
+@app.get("/admin")
+async def admin(request: Request):
+    return templates.TemplateResponse('admin.html',
+                                      {'request': request,
+                                       'username': 'admin'})
+
 # テーブルにいる全ユーザ情報を取得 GET
 @app.get("/users")
 def read_users():
