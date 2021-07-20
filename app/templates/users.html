@@ -14,7 +14,7 @@
     {% for u in users %}
     <tr>
         <td>{{ u['id'] }}</td>
-        <td>{{ u['name'] }}</td>
+        <td><a href="users/{{ u['id'] }}">{{ u['name'] }}</a></td>
         <td>{{ u['age'] }}</td>
     </tr>
     {% endfor %}

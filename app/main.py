@@ -45,7 +45,7 @@ async def read_users(request: Request):
 
 # idにマッチするユーザ情報を取得 GET
 @app.get("/users/{user_id}")
-def read_user(user_id: int):
+async def read_user(user_id: int):
     user = session.query(UserTable).\
         filter(UserTable.id == user_id).first()
     return user
