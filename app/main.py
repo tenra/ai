@@ -37,9 +37,11 @@ async def admin(request: Request):
 
 # テーブルにいる全ユーザ情報を取得 GET
 @app.get("/users")
-def read_users():
+async def read_users(request: Request):
     users = session.query(UserTable).all()
-    return users
+    return templates.TemplateResponse('users.html',
+                                     {'request': request,
+                                      'users': users})
 
 # idにマッチするユーザ情報を取得 GET
 @app.get("/users/{user_id}")

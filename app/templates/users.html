@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<br>
+<table class="table">
+    <thead class="table-dark">
+    <tr>
+        <th>#</th>
+        <th>名前</th>
+        <th>年齢</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for u in users %}
+    <tr>
+        <td>{{ u['id'] }}</td>
+        <td>{{ u['name'] }}</td>
+        <td>{{ u['age'] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
