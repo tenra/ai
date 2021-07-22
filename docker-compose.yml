@@ -9,11 +9,6 @@ services:
     # コンテナが落ちたら再起動する
     restart: always
     tty: true
-    environment:
-      MYSQL_DATABASE: sample_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password # ユーザのパスワード
-      MYSQL_ROOT_PASSWORD: password # ルートパスワード
     ports:
       - "3306:3306"
     volumes:
@@ -22,6 +17,11 @@ services:
       - ./log/mysql:/var/log/mysql # ログの保存
     networks:
       - local-net
+    environment:
+      APP_ENV: "development"
+      TZ: "Asia/Tokyo"
+    env_file:
+      - .env.development
 
   # FastAPI
   api:
@@ -37,6 +37,11 @@ services:
       - ./app:/usr/src/server
     networks:
       - local-net
+    environment:
+      APP_ENV: "development"
+      TZ: "Asia/Tokyo"
+    env_file:
+      - .env.development
 
 # コンテナ間で通信を行うためのネットワークブリッジ
 networks:

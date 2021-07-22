@@ -5,3 +5,4 @@ fastapi
 jinja2
 aiofiles
 alembic
+python-dotenv
