@@ -1,5 +1,6 @@
 mysqlclient
 sqlalchemy
+sqlalchemy_utils
 uvicorn
 fastapi
 jinja2
