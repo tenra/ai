@@ -15,11 +15,11 @@
     <tbody>
     {% for u in users %}
     <tr>
-        <td>{{ u['id'] }}</td>
-        <td><a href="users/{{ u['id'] }}">{{ u['name'] }}</a></td>
-        <td>{{ u['age'] }}</td>
-        <td>{{ u['email'] }}</td>
-        <td>{{ u['password'] }}</td>
+        <td>{{ u.id }}</td>
+        <td><a href="users/{{ u.id }}">{{ u.name }}</a></td>
+        <td>{{ u.age }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.password }}</td>
     </tr>
     {% endfor %}
     </tbody>
