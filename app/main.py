@@ -54,9 +54,11 @@ async def read_user(user_id: int):
 @app.post("/user")
 # クエリでnameとstrを受け取る
 # /user?name="三郎"&age=10
-async def create_user(name: str, age: int):
+async def create_user(name: str, age: int, email: str, password: str):
     user = UserTable()
     user.name = name
+    user.email = email
+    user.password = password
     user.age = age
     session.add(user)
     session.commit()
@@ -71,4 +73,6 @@ async def update_users(users: List[User]):
             filter(UserTable.id == new_user.id).first()
         user.name = new_user.name
         user.age = new_user.age
+        user.email = new_user.email
+        user.password = new_user.password
         session.commit()

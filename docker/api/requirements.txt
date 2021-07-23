@@ -7,3 +7,4 @@ jinja2
 aiofiles
 alembic
 python-dotenv
+pydantic==1.7.3
