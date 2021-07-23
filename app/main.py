@@ -45,10 +45,11 @@ async def read_users(request: Request):
 
 # idにマッチするユーザ情報を取得 GET
 @app.get("/users/{user_id}")
-async def read_user(user_id: int):
-    user = session.query(UserTable).\
-        filter(UserTable.id == user_id).first()
-    return user
+async def read_user(request: Request, user_id: int):
+    user = session.query(UserTable).filter(UserTable.id == user_id).first()
+    return templates.TemplateResponse('user.html',
+                                     {'request': request,
+                                      'user': user})
 
 # ユーザ情報を登録 POST
 @app.post("/user")
